@@ -60,8 +60,6 @@ exports.modifyData = (req, res, next) => {
             repoInfo: tempRepoData,
             descriptionObj: descriptionObj,
         }
-        console.log("modifyData");
-        console.log(res.locals.userInfo);
         next();
     }
 }
