@@ -3,6 +3,7 @@ const fetch = require("./fetch");
 exports.getUserInfo = async (req, res, next) => {
     const { userName } = req.params;
     try {
+        console.log(userName);
         const userInfo = await fetch.getUser(userName);
         const repoInfo = await fetch.getRepository(userName);
         res.locals.userInfo = userInfo;
@@ -11,6 +12,7 @@ exports.getUserInfo = async (req, res, next) => {
         next();
     } catch (err) {
         console.log("1111")
+        next();
         // alert(err);
     }
 }
@@ -66,5 +68,9 @@ exports.modifyData = (req, res, next) => {
 }
 
 exports.resData = (req, res) => {
-    res.status(200).send(res.locals.userInfo);
+    if(res.local.userInfo){
+        res.status(200).send(res.locals.userInfo);
+    } else {
+        res.send("Error fetch")
+    }
 }
