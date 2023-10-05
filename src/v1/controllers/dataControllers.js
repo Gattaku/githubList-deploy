@@ -63,14 +63,12 @@ exports.modifyData = (req, res, next) => {
             repoInfo: tempRepoData,
             descriptionObj: descriptionObj,
         }
+        console.log("modifyData");
+        console.log(res.locals.userInfo);
         next();
     }
 }
 
 exports.resData = (req, res) => {
-    if(res.local.userInfo){
         res.status(200).send(res.locals.userInfo);
-    } else {
-        res.send("Error fetch")
-    }
 }
