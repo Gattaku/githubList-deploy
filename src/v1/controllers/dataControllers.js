@@ -3,7 +3,6 @@ const fetch = require("./fetch");
 exports.getUserInfo = async (req, res, next) => {
     const { userName } = req.params;
     try {
-        console.log(userName);
         const userInfo = await fetch.getUser(userName);
         const repoInfo = await fetch.getRepository(userName);
         res.locals.userInfo = userInfo;
@@ -13,12 +12,10 @@ exports.getUserInfo = async (req, res, next) => {
     } catch (err) {
         console.log("1111")
         next();
-        // alert(err);
     }
 }
 
 exports.modifyData = (req, res, next) => {
-    console.log(res.locals.userInfo);
     if (res.locals.userInfo.message) {
         next();
     } else {
